@@ -41,14 +41,14 @@ public class Board {
             for(int j=0;j<ships.fleet[i].size();j++) {
                 if (ships.fleet[i].getPlace()[j].x_coord== x
                         && ships.fleet[i].getPlace()[j].y_coord== y) {
-                    ships.fleet[i].addshipHealth();
+                   Ship.addshipHealth(ships.fleet[i]);// ships.fleet[i].addshipHealth();
                     setHit(x,y);
-                    ships.fleet[i].sunk();
+                    //ships.fleet[i].sunk();
                     return true;
                 }
             }
         }
-        setMiss(x,y);
+            setMiss(x,y);
             return false;
 
     }

@@ -29,19 +29,21 @@ public class Ship {
 
         return this.shipHealth;
     }
-    public void addshipHealth(){
+    public static void addshipHealth(Ship type){
 
-        this.shipHealth++;
+        type.shipHealth++;
+        sunk(type);
+
     }
-    public void sunk(){
-        if(this.getshipHealth()<=this.size()){
-            this.sunk=true;
+    public static void sunk(Ship type){
+        if(type.getshipHealth()>=type.size()){
+            type.sunk=true;
            Fleet.addSunk();
            isGameover();
         }
 
     }
-    public void isGameover(){
+    public static void isGameover(){
         if(Fleet.getSunk()>=5) {
             Fleet.setGameover();
         }
@@ -114,14 +116,14 @@ public class Ship {
        String name =type.name;
         return name;
 
-    }
+    }/**
     public boolean isSunk(){
         boolean sunken = this.sunk;
         if(sunken){
 
         }
         return sunken;
-    }
+    }*/
 
 
 }

@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Board playerBoard;
     private BoardView playerBoardView;
     Button newbutton;
-    Fleet newFleet= new Fleet();
+    Fleet newFleet= new Fleet(true);
     TextView text;
 
     @Override
@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                if( board.hit(newFleet,x,y)){
 
                 toast(String.format("Hit: %d, %d", x, y));
-                //place(x,y);
+               // Place hitplace= new Place(x,y);
                    }
                 else if(newFleet.isGameover()){
 
@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 else{
                    toast(String.format("Missed: %d, %d", x, y));
+                   board.setMiss(x,y);
                }
             }
         });
@@ -68,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v){
         toast(String.format("New Game Started"));
         board.resetShots();
-         newFleet= new Fleet();
+         newFleet= new Fleet(true);
     }
 
 

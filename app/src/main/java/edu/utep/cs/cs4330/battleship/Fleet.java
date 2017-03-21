@@ -16,8 +16,17 @@ public class Fleet {
         fleet[2]=new Ship(3);
         fleet[3]=new Ship(3);
         fleet[4]=new Ship(2);
-        createFleet();
+        creatFleet();
 
+    }
+    public Fleet(boolean isAi){
+        fleet=new Ship[sizeFleet];
+        fleet[0]= new Ship(5);
+        fleet[1]=new Ship(4);
+        fleet[2]=new Ship(3);
+        fleet[3]=new Ship(3);
+        fleet[4]=new Ship(2);
+        createFleetAI();
     }
     public static void setGameover(){
         gameover=true;
@@ -25,7 +34,14 @@ public class Fleet {
     public boolean isGameover(){
         return gameover;
     }
-    public void createFleet(){
+    public void creatFleet(){
+        fleet[0].setName("carrier");
+        fleet[1].setName("battleship");
+        fleet[2].setName("frigate");
+        fleet[3].setName("submarine");
+        fleet[4].setName("minesweeper");
+    }
+    public void createFleetAI(){
         fleet[0].setName("carrier");
         fleet[1].setName("battleship");
         fleet[2].setName("frigate");
@@ -33,7 +49,7 @@ public class Fleet {
         fleet[4].setName("minesweeper");
 
         for(int i=0; i<fleet.length; i++){
-        //   Ship.setShips(fleet[i]);
+           Ship.setShips(fleet[i]);
         }
     }
     public int getSizeFleet(){
