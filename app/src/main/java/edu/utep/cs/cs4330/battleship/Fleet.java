@@ -6,7 +6,7 @@ package edu.utep.cs.cs4330.battleship;
 
 public class Fleet {
     Ship[] fleet;
-   static boolean gameover=false;
+ //  static boolean gameover=false;
     int sizeFleet=5;
     static int sunk=0;
     public Fleet(){
@@ -16,32 +16,32 @@ public class Fleet {
         fleet[2]=new Ship(3);
         fleet[3]=new Ship(3);
         fleet[4]=new Ship(2);
-        creatFleet();
+        createFleet();
 
     }
-    public Fleet(boolean isAi){
+    public Fleet(Board boardCom){
         fleet=new Ship[sizeFleet];
         fleet[0]= new Ship(5);
         fleet[1]=new Ship(4);
         fleet[2]=new Ship(3);
         fleet[3]=new Ship(3);
         fleet[4]=new Ship(2);
-        createFleetAI();
+        createFleetAI(boardCom);
     }
-    public static void setGameover(){
+   /* public static void setGameover(){
         gameover=true;
-    }
-    public boolean isGameover(){
+    }*/
+   /* public boolean isGameover(){
         return gameover;
-    }
-    public void creatFleet(){
+    }*/
+    public void createFleet(){
         fleet[0].setName("carrier");
         fleet[1].setName("battleship");
         fleet[2].setName("frigate");
         fleet[3].setName("submarine");
         fleet[4].setName("minesweeper");
     }
-    public void createFleetAI(){
+    public void createFleetAI(Board board){
         fleet[0].setName("carrier");
         fleet[1].setName("battleship");
         fleet[2].setName("frigate");
@@ -49,7 +49,7 @@ public class Fleet {
         fleet[4].setName("minesweeper");
 
         for(int i=0; i<fleet.length; i++){
-           Ship.setShips(fleet[i]);
+           board.setShips(fleet[i]);
         }
     }
     public int getSizeFleet(){
@@ -64,4 +64,5 @@ public class Fleet {
     public static void resetSunk(){
         sunk=0;
     }
+
 }

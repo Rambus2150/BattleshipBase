@@ -45,54 +45,27 @@ public class Ship {
     public static void sunk(Ship type) {
         if (type.getshipHealth() >= type.size()) {
             type.sunk = true;
-          //  toast(String.format("sunk" + type.getName()));
             Log.d("SUNK",""+getName(type));
-            Fleet.addSunk();
-            isGameover();
+           // Fleet.addSunk();
+          //  Board.isGameover();
         }
 
     }
 
-    public static void isGameover() {
-        if (Fleet.getSunk() >= 5) {
-            Fleet.setGameover();
-        }
-    }
+
 /**Setting ships sizes and their orientations**/
     /**
      * creates random generated positioning
      **/
 
-    public static void setShips(Ship type) {
-        setOrientation(type);
-        placeShip(type);
+    //places player ships needs be called when ships are placed on the drag and drop
+    public static void setPLShips( Ship type,boolean dir, int x, int y){
+        type.vertical = dir;
+     //   setXy(type,x,y);
 
     }
+    //places ai ships
 
-    public static void placeShip(Ship type) {
-        int i = type.size() - 1;
-        if (type.vertical) {
-            int x = 0 + (int) (Math.random() * 9);
-            int y = 0 + (int) (Math.random() * i);
-            setXy(type, x, y);
-           /*for(int j= 0, j<2, j++;){
-                type.xy[j]=
-            }*/
-        } else {
-            int x = 0 + (int) (Math.random() * i);
-            int y = 0 + (int) (Math.random() * 9);
-            setXy(type, x, y);
-        }
-    }
-
-    public static void setOrientation(Ship type) {
-        int random;
-        random = 0 + (int) (Math.random() * 1);
-        if (random == 1) {
-            setVertical(type, false);
-
-        } else setVertical(type, true);
-    }
 
     /**
      * Return the size of this ship.
@@ -101,25 +74,11 @@ public class Ship {
         return size;
     }
 
-    public static void setVertical(Ship type, boolean ori) {
-        type.vertical = ori;
+    public boolean getVertical(){
+        return this.vertical;
     }
-
-    public static void setXy(Ship type, int x, int y) {
-        int j = type.size();
-        if (type.vertical) {
-            for (int i = 0; i < j; i++) {
-                Place coord = new Place(x, y);
-                type.xy[i] = coord;
-                y++;
-            }
-        } else {
-            for (int i = 0; i < j; i++) {
-                Place coord = new Place(x, y);
-                type.xy[i] = coord;
-                x++;
-            }
-        }
+    public void setVertical( boolean ori) {
+        this.vertical = ori;
     }
 
     public void setName(String name) {

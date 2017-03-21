@@ -140,10 +140,10 @@ public class BoardView extends View  {
 
         for(int i=0;i<boardSize;i++){
             for(int j=0;j<boardSize;j++){
-        if(board.getHit(i,j)==1) {
+        if(board.getHit(i,j).hit&&board.getHit(i,j).ship) {
             canvas.drawCircle(i*length+(length/2), j*length+(length/2),length/2, paintHit);
         }
-        else if(board.getHit(i,j)==2){
+        else if(board.getHit(i,j).hit){
             canvas.drawCircle(i*length+(length/2), j*length+(length/2), length/2, paintMiss);
                 }
             }

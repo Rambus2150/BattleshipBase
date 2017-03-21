@@ -13,20 +13,21 @@ import android.widget.Toast;
 //AppCompatActivity
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private Board board;
+    private Board board = new Board(10);
     private BoardView boardView;
-    private Board playerBoard;
+    private Board  playerBoard = new Board(10);;
     private BoardView playerBoardView;
     Button newbutton;
-    Fleet newFleet= new Fleet(true);
+    Button placeShips;
+
+
+    Fleet newFleet= new Fleet(board);
     TextView text;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        board = new Board(10);
-        playerBoard = new Board(10);
 
         newbutton = (Button) findViewById(R.id.newButton);
         newbutton.setOnClickListener(MainActivity.this);
@@ -41,8 +42,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         boardView.addBoardTouchListener(new BoardView.BoardTouchListener() {
             @Override
             public void onTouch(int x, int y) {
-               Board.setX(x);
-               Board.setY(y);
+
 
                 int shots=board.numofShots();
 
@@ -52,16 +52,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 toast(String.format("Hit: %d, %d", x, y));
 
-               // Place hitplace= new Place(x,y);
                    }
-                else if(newFleet.isGameover()){
+                else if(board.isGameover()){
 
                     toast(String.format("All ships sunk play again"));
                    newFleet.resetSunk();
                 }
                 else{
                    toast(String.format("Missed: %d, %d", x, y));
-                   board.setMiss(x,y);
+                   //board.setMiss(x,y);
                }
             }
         });
@@ -70,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v){
         toast(String.format("New Game Started"));
         board.resetShots();
-         newFleet= new Fleet(true);
+         newFleet= new Fleet(board);
     }
 
 

@@ -13,13 +13,16 @@ public class Place {
 
         this.x_coord=i;
         this.y_coord=j;
+        this.hit=false;
+        this.ship=false;
+    }
+    public void hasShip(){
+       this.ship=true;
+    }
+    public void setShip(){
         this.ship=true;
-
     }
-    public boolean hasShip(){
-        return this.ship;
-    }
-    public boolean hit(){
+   public boolean placeHit(int x, int y){
         this.hit=true;
         if (this.ship){
            return true;

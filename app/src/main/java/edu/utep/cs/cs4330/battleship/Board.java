@@ -9,9 +9,8 @@ package edu.utep.cs.cs4330.battleship;
  */
 public class Board {
     int shots=0;
-   static int j;
-    static int k;
-    static int [][] hitBoard;
+    int gamecounter=0;
+    private Place [][] hitBoard;
     /**
      * Size of this board. This board has
      * <code>size*size </code> places.
@@ -21,7 +20,12 @@ public class Board {
     /** Create a new board of the given size. */
     public Board(int size) {
         this.size = size;
-        this.hitBoard=new int[size][size];
+        this.hitBoard=new Place[size][size];
+        for(int i=0;i<size;i++){
+            for(int j=0;j<size;j++){
+                this.hitBoard[i][j]= new Place(i,j);
+            }
+        }
     }
 
     /** Return the size of this board. */
@@ -33,28 +37,47 @@ public class Board {
 
         int size=ships.getSizeFleet();
 
-        for(int i=0; i<size;i++){
-            for(int j=0;j<ships.fleet[i].size();j++) {
-                if (ships.fleet[i].getPlace()[j].x_coord== x
-                        && ships.fleet[i].getPlace()[j].y_coord== y) {
-                   Ship.addshipHealth(ships.fleet[i]);// ships.fleet[i].addshipHealth();
+        if(this.hitBoard[x][y].ship&&!this.hitBoard[x][y].hit){
                     setHit(x,y);
+            for(int i=0; i<size;i++){
+                for(int j=0;j<ships.fleet[i].size();j++) {
+                    if (ships.fleet[i].getPlace()[j].x_coord== x && ships.fleet[i].getPlace()[j].y_coord== y) {
+                        Ship.addshipHealth(ships.fleet[i]);// ships.fleet[i].addshipHealth();
 
-                    return true;
+                        return true;
+                    }
                 }
             }
         }
-            setMiss(x,y);
+            setHit(x,y);
+           // setMiss(x,y);
             return false;
 
     }
     public void setHit(int x, int y) {
-       this.hitBoard[x][y]=1;
+        gamecounter++;
+       this.hitBoard[x][y].hit=true;
     }
-    public void setMiss(int x, int y){
+   /* public void setMiss(int x, int y){
         this.hitBoard[x][y]=2;
-    }
-    public int getHit(int x, int y){
+    }*/
+   //used for Ai ships
+   public  void placeShip(Ship type) {
+       int i = type.size() - 1;
+       if (type.getVertical()) {
+           int x = 0 + (int) (Math.random() * 9);
+           int y = 0 + (int) (Math.random() * i);
+           setXy(type, x, y);
+           /*for(int j= 0, j<2, j++;){
+                type.xy[j]=
+            }*/
+       } else {
+           int x = 0 + (int) (Math.random() * i);
+           int y = 0 + (int) (Math.random() * 9);
+           setXy(type, x, y);
+       }
+   }
+    public Place getHit(int x, int y){
         return this.hitBoard[x][y];
     }
     public int numofShots(){
@@ -63,14 +86,50 @@ public class Board {
     public void resetShots(){
         shots=0;
     }
-    public static void setX(int x){
-        j=x;
+
+    public  void setXy(Ship type, int x, int y) {
+        int j = type.size();
+        if (type.getVertical()) {
+            for (int i = 0; i < j; i++) {
+                Place coord = new Place(x, y);
+                type.getPlace()[i] = coord;
+                this.hitBoard[x][y].setShip();
+                y++;
+            }
+        } else {
+            for (int i = 0; i < j; i++) {
+                Place coord = new Place(x, y);
+                type.getPlace()[i] = coord;
+                this.hitBoard[x][y].setShip();
+
+                x++;
+            }
+        }
     }
-    public static void setY(int y){
-        k=y;
+    public void setShips(Ship type) {
+        setOrientation(type);
+        placeShip(type);
+
     }
 
+    public static void setOrientation(Ship type) {
+        int random;
+        random = 0 + (int) (Math.random() * 1);
+        if (random == 1) {
+            type.setVertical( false);
 
+        } else type.setVertical( true);
+    }
+
+    public boolean isGameover(){
+       if(shots==100){
+           return true;
+       }
+       else if(gamecounter==17){
+           return true;
+       }
+        else return false;
+    }
     // Suggestions:
     // 1. Consider using the Observer design pattern so that a client,
     //    say a BoardView, can observe changes on a board, e.g.,
