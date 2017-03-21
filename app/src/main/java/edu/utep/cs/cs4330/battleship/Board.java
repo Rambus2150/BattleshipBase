@@ -37,8 +37,8 @@ public class Board {
 
         int size=ships.getSizeFleet();
 
-        if(this.hitBoard[x][y].ship&&!this.hitBoard[x][y].hit){
-                    setHit(x,y);
+        if(this.hitBoard[x][y].ship){
+
             for(int i=0; i<size;i++){
                 for(int j=0;j<ships.fleet[i].size();j++) {
                     if (ships.fleet[i].getPlace()[j].x_coord== x && ships.fleet[i].getPlace()[j].y_coord== y) {
@@ -49,13 +49,13 @@ public class Board {
                 }
             }
         }
-            setHit(x,y);
+
            // setMiss(x,y);
             return false;
 
     }
     public void setHit(int x, int y) {
-        gamecounter++;
+      //  gamecounter++;
        this.hitBoard[x][y].hit=true;
     }
    /* public void setMiss(int x, int y){
@@ -81,7 +81,10 @@ public class Board {
         return this.hitBoard[x][y];
     }
     public int numofShots(){
-        return shots++;
+        return shots;
+    }
+    public void addshots(){
+        shots++;
     }
     public void resetShots(){
         shots=0;

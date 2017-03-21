@@ -46,22 +46,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 int shots=board.numofShots();
 
-                text.setText("number of shots"+shots);
 
-               if( board.hit(newFleet,x,y)){
 
-                toast(String.format("Hit: %d, %d", x, y));
-
+               if( (!board.getHit(x,y).hit)&&board.hit(newFleet,x,y)){
+                    board.gamecounter++;
+                   board.setHit(x,y);
+                    toast(String.format("Hit: %d, %d", x, y));
+                   board.addshots();
                    }
-                else if(board.isGameover()){
+               else if(board.isGameover()){
 
-                    toast(String.format("All ships sunk play again"));
+                    toast("All ships sunk play again");
                    newFleet.resetSunk();
-                }
-                else{
+                    }
+               else if(!board.getHit(x,y).hit){
+                   board.setHit(x,y);
+                   board.addshots();
                    toast(String.format("Missed: %d, %d", x, y));
                    //board.setMiss(x,y);
                }
+                text.setText("number of shots"+shots);
             }
         });
     }
