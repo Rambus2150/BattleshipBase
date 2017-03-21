@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                if( board.hit(newFleet,x,y)){
 
                 toast(String.format("Hit: %d, %d", x, y));
+
                // Place hitplace= new Place(x,y);
                    }
                 else if(newFleet.isGameover()){

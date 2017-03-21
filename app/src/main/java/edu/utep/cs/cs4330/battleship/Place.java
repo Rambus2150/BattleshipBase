@@ -16,6 +16,9 @@ public class Place {
         this.ship=true;
 
     }
+    public boolean hasShip(){
+        return this.ship;
+    }
     public boolean hit(){
         this.hit=true;
         if (this.ship){

@@ -28,11 +28,7 @@ public class Board {
     public int size() {
         return size;
     }
-    /*public boolean placeShip(Ship ship, int x, int y, boolean dir){
 
-
-        return true;
-    }*/
     public boolean hit(Fleet ships,int x, int y){
 
         int size=ships.getSizeFleet();
@@ -43,7 +39,7 @@ public class Board {
                         && ships.fleet[i].getPlace()[j].y_coord== y) {
                    Ship.addshipHealth(ships.fleet[i]);// ships.fleet[i].addshipHealth();
                     setHit(x,y);
-                    //ships.fleet[i].sunk();
+
                     return true;
                 }
             }

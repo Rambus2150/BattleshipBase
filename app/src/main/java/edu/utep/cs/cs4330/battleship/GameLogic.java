@@ -42,7 +42,9 @@ public class GameLogic {
         }
     }
     public void changeTurn(){
-
+        if(playerTurn)
+        playerTurn=false;
+        else playerTurn=true;
     }
     public void opponent(){}
     public void makeMove(){}
