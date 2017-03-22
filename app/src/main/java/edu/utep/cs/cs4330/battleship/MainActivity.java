@@ -2,6 +2,7 @@ package edu.utep.cs.cs4330.battleship;
 /** created by Ramon Bustamante */
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,8 +12,8 @@ import android.widget.Toast;
 
 
 //AppCompatActivity
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
-
+public class MainActivity extends AppCompatActivity /*implements View.OnClickListener*/{
+    boolean playerturn=true;
     private Board board = new Board(10);
     private BoardView boardView;
     private Board  playerBoard = new Board(10);;
@@ -28,16 +29,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        defineButtons();
+/*
         newbutton = (Button) findViewById(R.id.newButton);
-        newbutton.setOnClickListener(MainActivity.this);
+        placeShips = (Button) findViewById(R.id.placeShips);
+        */
+       // newbutton.setOnClickListener(MainActivity.this);
         text=(TextView)findViewById(R.id.shotCount);
 
         boardView = (BoardView) findViewById(R.id.boardView);
         boardView.setBoard(board);
 
-        playerBoardView = (BoardView) findViewById(R.id.boardView2);
-        playerBoardView.setBoard(playerBoard);
+      playerBoardView = (BoardView) findViewById(R.id.boardView2);
+       playerBoardView.setBoard(playerBoard);
 
         boardView.addBoardTouchListener(new BoardView.BoardTouchListener() {
             @Override
@@ -69,13 +73,32 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
     }
+    private View.OnClickListener buttonClickListener=new View.OnClickListener(){
+        @Override
+        public void onClick(View v){
+            switch (v.getId()){
+                case R.id.newButton:
 
-    public void onClick(View v){
-        toast(String.format("New Game Started"));
-        board.resetShots();
-         newFleet= new Fleet(board);
+                    toast(String.format("New Game Started"));
+                    board.resetShots();
+                    newFleet= new Fleet(board);
+                    break;
+                case R.id.placeShips:
+                    //starts a new activity
+                    toast(String.format("placeShips"));
+                    placeActivity(v);
+            }
+        }
+    };
+    public void  defineButtons(){
+        findViewById(R.id.newButton).setOnClickListener(buttonClickListener);
+        findViewById(R.id.placeShips).setOnClickListener(buttonClickListener);
     }
 
+    public void placeActivity(View view){
+        Intent startPlayActivity = new Intent(this, PlayActivity.class);
+        startActivity(startPlayActivity);
+    }
 
     /** Show a toast message. */
     protected void toast(String msg) {
@@ -83,3 +106,4 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 }
+/* */

@@ -1,34 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_place"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    tools:context="edu.utep.cs.cs4330.battleship.PlayActivity">
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="edu.utep.cs.cs4330.battleship.MainActivity">
 
-    <android.support.design.widget.AppBarLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="11dp">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+            android:layout_height="0dp"
+            android:layout_weight="0.3"
+            android:orientation="vertical">
 
-    </android.support.design.widget.AppBarLayout>
+            <RadioButton
+                android:id="@+id/aircraft_carrier"
+                android:text="Aircraft Carrier"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <RadioButton
+                android:id="@+id/battleship"
+                android:text="Battleship"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/aircraft_carrier"
+                />
+            <RadioButton
+                android:id="@+id/frigate"
+                android:text="Frigate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/battleship"
+                />
+            <RadioButton
+                android:id="@+id/submarine"
+                android:text="Submarine"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/frigate"
+                />
+            <RadioButton
+                android:id="@+id/minesweeper"
+                android:text="Minesweeper"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/submarine"
+                />
 
-    <include layout="@layout/content_play" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true">
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
+                <Button
+                    android:id="@+id/randomButton"
+                    android:text="Random"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"/>
 
-</android.support.design.widget.CoordinatorLayout>
+                <Button
+                    android:id="@+id/clearButton"
+                    android:text="Clear"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/randomButton"
+                    android:layout_alignParentRight="true"/>
+                <Button
+                    android:id="@+id/startButton"
+                    android:text="Start"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/clearButton"
+                    android:layout_alignParentRight="true"/>
+
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+
+        <edu.utep.cs.cs4330.battleship.BoardView
+            android:id="@+id/boardView2"
+            android:layout_width="match_parent"
+            android:layout_weight="0.58"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"/>
+    </LinearLayout>
+
+</RelativeLayout>

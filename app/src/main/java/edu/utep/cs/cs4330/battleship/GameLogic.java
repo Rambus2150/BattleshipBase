@@ -3,25 +3,25 @@ package edu.utep.cs.cs4330.battleship;
 /**
  * Created by Ramon Bustamante on 2/28/2017.
  */
-/*
+
 public class GameLogic {
-    public void makePlayerShot(Place place){
-        place.hit();
-        if(!Fleet.gameover&&!place.hasShip()){//miss
-            changeTurn();
-            new Thread(this::makeComputerShot).start();
+    public void makePlayerShot(Board board, int x, int y){
+      //  place.hit();
+        if(!board.isGameover()&&!board.getHit(x,y).ship){//miss
+          //  changeTurn();
+           // new Thread(this::makeComputerShot).start();
             //new thread
         }
     }
-    private void makeComputerShot(){
+    private void makeComputerShot(Board board){
         try{
             Thread.sleep(500);
         }catch (InterruptedException e){}
-        boolean hit =opponent().makeMove();
-        if(!Fleet.gameover){
-            makeComputerShot();
+       // boolean hit =opponent().makeMove();
+        if(!board.isGameover()){
+           // makeComputerShot();
         }else{
-            changeTurn();
+            //changeTurn();
         }
     }
     public void Strategy(int i){
@@ -41,13 +41,12 @@ public class GameLogic {
             //implement smart strategy
         }
     }
-    public void changeTurn(){
-        if(playerTurn)
-        playerTurn=false;
-        else playerTurn=true;
+    public void changeTurn(boolean playerturn){
+        if(playerturn)
+        playerturn=false;
+        else playerturn=true;
     }
     public void opponent(){}
     public void makeMove(){}
 
 }
-*/

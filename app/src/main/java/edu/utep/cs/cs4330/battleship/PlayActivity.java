@@ -9,25 +9,24 @@ import android.view.Menu;
 import android.view.View;
 
 public class PlayActivity extends AppCompatActivity {
-
+    private Board  playerBoard = new Board(10);
+    private BoardView playerBoardView;
+    //Button
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        playerBoardView = (BoardView) findViewById(R.id.boardView2);
+        playerBoardView.setBoard(playerBoard);
+     //   Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+      //  setSupportActionBar(toolbar);
+        playerBoardView.addBoardTouchListener(new BoardView.BoardTouchListener() {
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            public void onTouch(int x, int y) {
+
             }
+//   FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         });
-    }
-public boolean onCreateOptionsMenu(Menu menu){
-   // getMenuInflater().(R.menu.menu_play,menu);
-    return true;
+
 }
 }
