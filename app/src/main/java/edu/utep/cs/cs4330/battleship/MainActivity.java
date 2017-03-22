@@ -69,7 +69,8 @@ public class MainActivity extends AppCompatActivity /*implements View.OnClickLis
                    toast(String.format("Missed: %d, %d", x, y));
                    //board.setMiss(x,y);
                }
-                text.setText("number of shots"+shots);
+                boardView.update(board);
+                text.setText("Shots"+shots);
             }
         });
     }

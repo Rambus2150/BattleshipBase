@@ -14,14 +14,17 @@ import android.widget.Toast;
 public class PlayActivity extends AppCompatActivity {
     private Board  playerBoard = new Board(10);
     private BoardView playerBoardView;
+    Fleet playerFleet;
     RadioGroup rgroup;
     RadioButton shipselect;
     RadioGroup sgroup;
     RadioButton stratSelect;
+    Boolean vertical = true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play);
+        defineButtons();
         playerBoardView = (BoardView) findViewById(R.id.boardView2);
         playerBoardView.setBoard(playerBoard);
      //   Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -33,8 +36,34 @@ public class PlayActivity extends AppCompatActivity {
             public void onTouch(int x, int y) {
 
             }
-//   FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+
         });
+
+    }
+    private View.OnClickListener buttonClickListener=new View.OnClickListener(){
+        @Override
+        public void onClick(View v){
+            switch (v.getId()){
+                case R.id.randomButton:
+                    playerFleet=new Fleet(playerBoard);
+                    break;
+                case R.id.clearButton:
+                    playerFleet=new Fleet();
+                    break;
+                case R.id.startButton:
+                    break;
+                case R.id.orientation:
+                    vertical =(!vertical);
+                    break;
+            }
+        }
+    };
+    public void  defineButtons(){
+        findViewById(R.id.randomButton).setOnClickListener(buttonClickListener);
+        findViewById(R.id.clearButton).setOnClickListener(buttonClickListener);
+        findViewById(R.id.startButton).setOnClickListener(buttonClickListener);
+        findViewById(R.id.orientation).setOnClickListener(buttonClickListener);
+
 
     }
     public void shipSelect(View v){

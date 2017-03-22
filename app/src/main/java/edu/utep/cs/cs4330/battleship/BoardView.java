@@ -20,8 +20,11 @@ import java.util.Observer;
  *
  * @see Board
  */
-public class BoardView extends View  {
+public class BoardView extends View {
 
+    public void update(Board b){
+        invalidate();
+    }
     /** Callback interface to listen for board touches. */
     public interface BoardTouchListener {
 
