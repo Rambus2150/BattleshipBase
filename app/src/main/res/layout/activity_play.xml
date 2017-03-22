@@ -32,13 +32,16 @@
                 android:id="@+id/aircraft_carrier"
                 android:text="Aircraft Carrier"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:onClick="shipSelect"
+                />
             <RadioButton
                 android:id="@+id/battleship"
                 android:text="Battleship"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/aircraft_carrier"
+                android:onClick="shipSelect"
                 />
             <RadioButton
                 android:id="@+id/frigate"
@@ -46,6 +49,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/battleship"
+                android:onClick="shipSelect"
                 />
             <RadioButton
                 android:id="@+id/submarine"
@@ -53,6 +57,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/frigate"
+                android:onClick="shipSelect"
                 />
             <RadioButton
                 android:id="@+id/minesweeper"
@@ -60,6 +65,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/submarine"
+                android:onClick="shipSelect"
                 />
                 </RadioGroup>
             <RadioGroup
@@ -72,12 +78,15 @@
                     android:id="@+id/Random"
                     android:text="Random"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:onClick="strategySelect"
+                    />
                 <RadioButton
                     android:id="@+id/Sweep"
                     android:text="Sweep"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:onClick="strategySelect"
 
                     />
                 <RadioButton
@@ -85,6 +94,7 @@
                     android:text="Smart"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:onClick="strategySelect"
 
                     />
 

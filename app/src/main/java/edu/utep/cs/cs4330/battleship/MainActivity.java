@@ -80,8 +80,7 @@ public class MainActivity extends AppCompatActivity /*implements View.OnClickLis
                 case R.id.newButton:
 
                     toast(String.format("New Game Started"));
-                    board.resetShots();
-                    newFleet= new Fleet(board);
+                    newgame();
                     break;
                 case R.id.placeShips:
                     //starts a new activity
@@ -90,6 +89,12 @@ public class MainActivity extends AppCompatActivity /*implements View.OnClickLis
             }
         }
     };
+    public void newgame(){
+        board.resetShots();
+        board =new Board(10);
+        boardView.setBoard(board);
+        newFleet= new Fleet(board);
+    }
     public void  defineButtons(){
         findViewById(R.id.newButton).setOnClickListener(buttonClickListener);
         findViewById(R.id.placeShips).setOnClickListener(buttonClickListener);
