@@ -8,8 +8,8 @@ package edu.utep.cs.cs4330.battleship;
  * in either a hit or miss.
  */
 public class Board {
-    int shots=0;
-    int gamecounter=0;
+    int shots=1;
+    int gamecounter=1;
     private Place [][] hitBoard;
     /**
      * Size of this board. This board has
@@ -117,7 +117,7 @@ public class Board {
 
     public static void setOrientation(Ship type) {
         int random;
-        random = 0 + (int) (Math.random() * 1);
+        random = 0 + (int) (Math.random() * 2);
         if (random == 1) {
             type.setVertical( false);
 

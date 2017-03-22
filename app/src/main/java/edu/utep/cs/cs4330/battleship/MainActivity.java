@@ -95,6 +95,8 @@ public class MainActivity extends AppCompatActivity /*implements View.OnClickLis
         board =new Board(10);
         boardView.setBoard(board);
         newFleet= new Fleet(board);
+        boardView.update(board);
+
     }
     public void  defineButtons(){
         findViewById(R.id.newButton).setOnClickListener(buttonClickListener);
