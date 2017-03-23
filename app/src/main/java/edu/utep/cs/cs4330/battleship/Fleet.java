@@ -6,7 +6,6 @@ package edu.utep.cs.cs4330.battleship;
 
 public class Fleet {
     Ship[] fleet;
- //  static boolean gameover=false;
     int sizeFleet=5;
     static int sunk=0;
     public Fleet(){
@@ -28,12 +27,7 @@ public class Fleet {
         fleet[4]=new Ship(2);
         createFleetAI(boardCom);
     }
-   /* public static void setGameover(){
-        gameover=true;
-    }*/
-   /* public boolean isGameover(){
-        return gameover;
-    }*/
+
     public void createFleet(){
         fleet[0].setName("carrier");
         fleet[1].setName("battleship");
@@ -55,14 +49,7 @@ public class Fleet {
     public int getSizeFleet(){
         return this.sizeFleet;
     }
-    public static void addSunk(){
-        sunk++;
-    }
-    public static int getSunk(){
-        return sunk;
-    }
-    public static void resetSunk(){
-        sunk=0;
-    }
+
+
 
 }

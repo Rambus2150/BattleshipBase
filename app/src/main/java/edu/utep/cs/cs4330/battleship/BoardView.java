@@ -21,8 +21,8 @@ import java.util.Observer;
  * @see Board
  */
 public class BoardView extends View {
-
-    public void update(Board b){
+    public boolean player =false;
+    public void update(){
         invalidate();
     }
     /** Callback interface to listen for board touches. */
@@ -43,7 +43,7 @@ public class BoardView extends View {
     private final List<BoardTouchListener> listeners = new ArrayList<>();
     private final int RED_COLOR = Color.rgb(255, 0, 0);
     private final int BLUE_COLOR = Color.rgb(10, 10, 255);
-
+    private final int GREEN_COLOR = Color.rgb(100,100,100);
     /** Board background color. */
 
     private final int boardColor = Color.rgb(102, 163, 255);
@@ -63,7 +63,10 @@ public class BoardView extends View {
     {
         paintHit.setColor(RED_COLOR);
     }
-
+    private final Paint paintShip = new Paint(Paint.ANTI_ALIAS_FLAG);
+    {
+        paintShip.setColor(GREEN_COLOR);
+    }
     /** Board grid line color. */
     private final int boardLineColor = Color.WHITE;
 
@@ -149,6 +152,9 @@ public class BoardView extends View {
         else if(board.getHit(i,j).hit){
             canvas.drawCircle(i*length+(length/2), j*length+(length/2), length/2, paintMiss);
                 }
+        else if(player&&board.getHit(i,j).ship){
+            canvas.drawCircle(i*length+(length/2), j*length+(length/2), length/2, paintShip);
+        }
             }
         }
     }

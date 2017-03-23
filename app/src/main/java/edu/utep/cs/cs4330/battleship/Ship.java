@@ -19,7 +19,7 @@ public class Ship {
     public Ship(int size) {
         this.sunk = false;
         this.size = size;
-        //  this.vertical=true;
+
         //will consist of
         this.xy = new Place[size];
         this.name = "";
@@ -46,8 +46,7 @@ public class Ship {
         if (type.getshipHealth() >= type.size()) {
             type.sunk = true;
             Log.d("SUNK",""+getName(type));
-           // Fleet.addSunk();
-          //  Board.isGameover();
+
         }
 
     }
@@ -59,8 +58,8 @@ public class Ship {
      **/
 
     //places player ships needs be called when ships are placed on the drag and drop
-    public static void setPLShips( Ship type,boolean dir, int x, int y){
-        type.vertical = dir;
+    public void setPLShips(  int x, int y){
+
      //   setXy(type,x,y);
 
     }
@@ -90,18 +89,5 @@ public class Ship {
         return type.name;
 
     }
-
-    /**
-     * public boolean isSunk(){
-     * boolean sunken = this.sunk;
-     * if(sunken){
-     * <p>
-     * }
-     * return sunken;
-     * }
-     */
-
-
-   
 
 }

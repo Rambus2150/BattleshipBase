@@ -50,7 +50,7 @@ public class Board {
             }
         }
 
-           // setMiss(x,y);
+
             return false;
 
     }
@@ -58,9 +58,7 @@ public class Board {
       //  gamecounter++;
        this.hitBoard[x][y].hit=true;
     }
-   /* public void setMiss(int x, int y){
-        this.hitBoard[x][y]=2;
-    }*/
+
    //used for Ai ships
    public  void placeShip(Ship type) {
        int i = type.size() - 1;
@@ -68,9 +66,7 @@ public class Board {
            int x = 0 + (int) (Math.random() * 9);
            int y = 0 + (int) (Math.random() * i);
            setXy(type, x, y);
-           /*for(int j= 0, j<2, j++;){
-                type.xy[j]=
-            }*/
+
        } else {
            int x = 0 + (int) (Math.random() * i);
            int y = 0 + (int) (Math.random() * 9);

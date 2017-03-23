@@ -5,48 +5,41 @@ package edu.utep.cs.cs4330.battleship;
  */
 
 public class GameLogic {
-    public void makePlayerShot(Board board, int x, int y){
-      //  place.hit();
-        if(!board.isGameover()&&!board.getHit(x,y).ship){//miss
-          //  changeTurn();
-           // new Thread(this::makeComputerShot).start();
-            //new thread
+   static int strategy;
+    static int x=0;
+    static int y=0;
+
+    public static void makeComputerShot(Board board){
+        Strategy();
+        if(!board.isGameover()&&!board.getHit(x,y).hit){
+            board.getHit(x,y).hit=true;
+        }
+        else{
+            makeComputerShot(board);
         }
     }
-    private void makeComputerShot(Board board){
-        try{
-            Thread.sleep(500);
-        }catch (InterruptedException e){}
-       // boolean hit =opponent().makeMove();
-        if(!board.isGameover()){
-           // makeComputerShot();
-        }else{
-            //changeTurn();
+    public static void Strategy(){
+        //implement random Strategy
+        if(strategy==1){
+                 x = 0 + (int) (Math.random() * 9);
+                 y = 0 + (int) (Math.random() * 9);
+        }
+
+        //implement sweep strategy
+        else if(strategy==2){
+            if(x>=9){
+                x=0;
+                y++;
+            }
+            x++;
+            if(y>=9){
+                y=0;
+            }
+
+        }
+        else if(strategy==3){
+            x = 0 + (int) (Math.random() * 9);
+            y = 0 + (int) (Math.random() * 9);
         }
     }
-    public void Strategy(int i){
-        if(i==1){
-
-
-                int x = 0 + (int) (Math.random() * 9);
-                int y = 0 + (int) (Math.random() * i);
-
-        }
-            //implement random Strategy
-
-        else if(i==2){
-            //implement sweep strategy
-        }
-        else if(i==3){
-            //implement smart strategy
-        }
-    }
-    public void changeTurn(boolean playerturn){
-        if(playerturn)
-        playerturn=false;
-        else playerturn=true;
-    }
-    public void opponent(){}
-    public void makeMove(){}
-
 }
